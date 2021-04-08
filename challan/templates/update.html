@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update Bill</title>
+</head>
+<body>
+
+
+    {%if user.is_superuser%}
+
+    <h1>Update Bill</h1>
+    <form method="post">{% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="Update">
+    </form>
+
+    {%else%}
+
+    <center>
+        <h1>Hmm.. Looks like you are in wrong Route.</h1>
+        <a href="{%url "home"%}">Go to home page</a>
+    </center>
+
+    {%endif%}
+
+   
+    
+</body>
+</html>

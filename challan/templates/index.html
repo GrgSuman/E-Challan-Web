@@ -1,0 +1,1071 @@
+{%load static%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome {{user.username}}</title>
+
+    <!-- BOOTSTRAP -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
+
+    <!-- FONTS -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" />
+
+    <style>
+
+        *{
+            font-family: 'Montserrat',sans-serif;
+            margin: 0;padding: 0;box-sizing: border-box;
+        }
+
+        p{
+            margin: 0;
+
+        }
+
+.rootContainer{
+    display: flex;
+}
+
+.leftSide{
+    background-color: #002b49;
+    width:15%;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+}
+
+
+.rightSide{
+    background-color: #f9fbfd;
+    width: 85%;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 15%;
+}
+
+.logo_side{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 0;
+}
+
+.logo_side img{
+height:65px;
+}
+
+.dashList{
+    padding-left: 0;
+    margin-top:20%;
+}
+
+.dashList li{
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.815);
+    list-style: none;
+    margin: 10px 0;
+    font-weight: 300;
+    padding: 15px 2rem;
+
+}
+
+.dashList li:hover{
+    background-color: rgba(29, 19, 19, 0.233);
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+
+.dashList li i{
+    margin-right: 8px;
+    font-size: 12px;
+    padding:8px;
+
+}
+
+.active  i{
+    background-color: white;
+    border-radius: 50%;
+    color: rgba(0, 0, 0, 0.664);
+    
+}
+
+.active{
+    color: white!important;
+}
+
+.rightSide nav{
+    height: 10%;
+    width: 100%;
+    background-color: white;
+    box-shadow: 1px 0px 6px #00000017;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 5%;
+    position: relative;
+}
+
+.userProfile img{
+    height: 45px;
+    width: 45px;
+    border-radius: 50%;
+}
+
+
+.userProfile{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.userProfile input[type="file"]{
+    display: none;
+}
+
+.userProfile form button{
+    display: none;
+}
+
+.userProfile p{
+    margin: 0 15px;
+}
+.userProfile i{
+    font-size: 20px;
+}
+
+.userProfile i:hover,.userProfile p:hover,.userProfile img:hover{
+    cursor: pointer;
+}
+
+.mainContent{
+    width: 100%;
+    height: 90%;
+    overflow-y: scroll;
+}
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1; 
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888; 
+  border-radius: 10px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555; 
+}
+
+.global{
+    color: white;
+    background-color:#002b49 ;
+    padding: 15px 17px;
+    font-size: 25px;
+    border-radius: 50%;
+    position: fixed;
+    bottom:7%;
+    right:5%;
+    z-index: 1232;
+    box-shadow: 0px 1px 9px #000000ad;
+}
+.global:hover{
+    cursor: pointer;
+}
+
+.mainContent > div{
+  width:95%;
+  margin:20px auto;
+}
+
+tbody, td, tfoot, th, thead, tr {
+    font-size: 14px;
+}
+
+ th {
+    font-weight: 400;
+}
+
+.dashContent,.userContent,.createContent,.myChallanContent,.allChallanContent,.myProfileContent{
+display: none;
+}
+
+
+.activeContent{
+    display: block;
+}
+
+.myChallanFm,.userContent div{
+    width: 100%;
+    margin: 3% auto;
+    display: flex;
+    justify-content: center;
+}
+
+.myChallanFm form{
+    width: 95%;
+}
+
+.myChallanFm form input,.userEditProfileForm form input,.myChallanFm form select{
+    margin-bottom: 10px;
+}
+
+.editDetails{
+    display: none;
+    font-size: 14px;
+    position: absolute;
+    right: 5%;
+    bottom: -70%;
+    width: fit-content;
+    background-color: #fff;
+    padding: 8px 0;
+    box-shadow: 2px 2px 12px #00000017;
+    border-radius: 5px;
+}
+.editDetails a{
+    padding: 5px 30px;
+    display: block;
+    text-decoration: none;
+    color: black;
+}
+.editDetails a:hover{
+    background-color:#f1ebeb;
+    cursor: pointer;
+}
+
+.rotate{
+    transition: .2s ease;
+    transform: rotate(30deg);
+}
+
+.userEditProfileForm{
+    height: 100vh;
+    width: 100vw;
+    background-color:#0000007d;
+    position: fixed;
+    justify-content: center;
+    align-items: center;
+    z-index: 999999;
+    display: none;
+
+}
+.userEditProfileForm form{
+    width:30% ;
+    position: relative;
+    background-color: rgba(255, 255, 255);
+    padding: 5% 4%;
+    border-radius:10px;
+    box-shadow: 2px 2px 12px #00000017;
+}
+.userEditProfileForm form i{
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    color: rgba(0, 0, 0, 0.671);
+}
+.userEditProfileForm form i:hover{
+    cursor: pointer;
+    color: black;
+}
+
+.unavailable{
+    height:80vh;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.inner-div{
+    margin-top: 3%;
+}
+
+.inner{
+    display:flex;
+    margin-left: 10%;
+    margin-top: 10%;
+    align-items: center;
+}
+
+.inner img{
+border-radius: 50%;
+padding: 3px;
+border:solid 7px #00000026;
+margin: 0 20px;
+}
+
+.inner img:hover{
+    cursor: pointer;
+}
+
+.inner section{
+margin-left: 20px;
+}
+
+.inner section h4{
+    color: rgba(0, 0, 0, 0.651);
+    line-height: 2em;
+}
+
+
+.loading{
+    height: 100vh;
+    width: 100%;
+    position: absolute;
+    background:none;
+    display: none;
+    justify-content: center;
+    align-items: center;
+}
+
+.download-pdf:hover{
+    cursor: pointer;
+}
+
+.infoContainers{
+    display: flex;
+    color: white;
+
+}
+
+.infoContainer1,.infoContainer2,.infoContainer3{
+    height:180px;
+    flex: 1;
+    margin: 0 15px;
+    display: flex;
+    border-radius: 10px;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.users_pie{
+    display: flex;
+    height:50vh;
+    margin: 3% 0;
+}
+
+.list_users{
+flex: 2.1;
+background-color:#e0eafc40;
+margin: 0 15px;
+border-radius: 10px;
+padding:20px 30px;
+}
+.round_pie{
+flex: 1;
+border-radius: 10px;
+margin: 0 15px;
+display: flex;
+justify-content: center;
+align-items: center;
+}
+
+
+
+    </style>
+</head>
+<body>
+    
+
+    {%if user.active%}
+    
+    <i class="fas fa-plus global" data-bs-toggle="tooltip" data-bs-placement="top" title="Create Challan"></i>
+
+    <div class="userEditProfileForm">
+
+        <form action="{%url 'update_user' request.user.id%}" method="POST">
+            {%csrf_token%}
+            <i class="fas fa-times"></i>
+            <label for="exampleFormControlInput1" class="form-label">Name</label>
+            <input type="text" name="fullname" required class="form-control" value="{{request.user.first_name}} {{request.user.last_name}}" id="">
+
+            <label for="exampleFormControlInput2" class="form-label">Date of Birth</label>
+            <input type="date" name="date_of_birth" required class="form-control" value="{{request.user.date_of_birth|date:"Y-m-d"}}" id="">
+
+            <label for="exampleFormControlInput3" class="form-label">Email</label>
+            <input type="text" name="username" required class="form-control" value="{{request.user.email}}" id="">
+
+            <label for="exampleFormControlInput3" class="form-label">Address</label>
+            <input type="text" required name="address" class="form-control" value="{{request.user.address}}" id="">
+
+            <button type="submit" class="btn btn-warning mt-3">Update</button>
+        </form>
+
+    </div>
+
+
+    
+
+
+    <div class="rootContainer">
+
+        <aside class="leftSide">
+
+            <div class="logo_side">
+            <img src="{%static "images/logo1.svg"%}" alt="logo">
+            </div>
+
+            <ul class="dashList">
+                <li class="active dashboard"><i class="fas fa-home"></i> Dashboard</li>
+
+                {%if user.is_superuser%}
+                <li class=" users"><i class="fas fa-users"></i> Users</li>
+                {%endif%}
+
+                <li class=" createChallan"><i class="fas fa-plus"></i> Create Challan</li>
+                <li class=" myChallans"><i class="fas fa-wallet"></i> My Challans</li>
+                <li class=" allChallans"><i class="fas fa-globe-asia"></i> All Challans</li>
+                <li class=" myProfile"><i class="far fa-user"></i>My Profile</li>
+            </ul>
+
+        </aside>
+
+        <section class="rightSide">
+
+
+            <div class="loading">
+                <lottie-player  src="https://assets9.lottiefiles.com/packages/lf20_ObshHL.json"  background="transparent"  speed="1"  style="width: 150px; height: 150px;"  loop  autoplay></lottie-player>
+             </div>
+
+            <nav>
+                <h4>Dashboard</h4>
+                <div class="userMenu">
+                    <div class="userProfile">
+                        <form action="{%url "update-user-photo"%}" method="POST" enctype="multipart/form-data">
+                            {%csrf_token%}
+                            {{profile.as_p}}
+                            <button type="submit">Update</button>
+                        </form>                    
+                        <img src="{{user.profile.url}}" alt="profile" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Change Profile" >
+                         <p>Hello, {{user.first_name}}</p> <span> <i class="fas fa-cog showEdit"></i> </span>
+                    </div>
+                </div>
+
+                <div class="editDetails">
+
+                    <a class="edit_my_profile"><i class="far fa-user" style="margin-right: 8px;"></i> Edit Account</a>
+                    <a href="{%url "logout"%}"><i class="fas fa-sign-out-alt" style="margin-right: 8px;"></i> Logout</a>
+
+                </div>
+            </nav>
+
+
+
+            <div class="mainContent">
+
+                 <div class="dashContent activeContent">
+                    
+                    <div class="inner-div dash-container">
+
+                        <section class="infoContainers">
+
+                            <div class="infoContainer1" style="background:#273c75;">
+                             <h3 style="font-weight: 400;">Total Users</h3>
+                              <h2 style="margin-top: 1rem;"> {{totalUsers}}</h2>
+                            </div>
+
+                            <div class="infoContainer2" style="background:#7f8fa6;">
+                                <h3 style="font-weight: 400;">My Challans</h3>
+                                <h2 style="margin-top: 1rem;">{{myChallan}}</h2>
+                            </div>
+
+                            <div class="infoContainer3" style="background:#e1b12c;">
+                                <h3 style="font-weight: 400;">Total Challans</h3>
+                                <h2 style="margin-top: 1rem;">{{totalChallan}}</h2>
+                            </div>
+
+                        </section>
+
+
+                        <section class="users_pie">
+
+                            <div class="list_users">
+                             <h4>Users</h4>
+                            </div>
+
+                            <div class="round_pie">
+
+                                <div>
+                                    <canvas id="myChart"></canvas>
+                                  </div>
+
+                            </div>
+
+                        </section>
+
+
+                       
+                      </div>
+
+                    
+
+                 </div>
+
+                 <div class="userContent">
+
+                    <div>
+                        <table class="table table-striped table-hover">
+                            <thead class="table-dark">
+                              <tr>
+                                <th scope="col">SN</th>
+                                <th scope="col">First Name</th>
+                                <th scope="col">Last Name</th>
+                                <th scope="col">Email</th>
+                                <th scope="col">Active Status</th>
+                                <th scope="col">Address</th>
+                                <th scope="col">Actions</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                                {%for user in users%}
+                              <tr class="form-class">
+                                <th style="padding-top: 15px!important;" scope="row">{{ forloop.counter }}</th>
+                                <td style="padding-top: 15px!important;">{{user.first_name}}</td>
+                                <td style="padding-top: 15px!important;">{{user.last_name}}</td>
+                                <td style="padding-top: 15px!important;">{{user.username}}</td>
+                                {%if user.is_superuser%}
+                                <td style="padding-top: 15px!important;"><span style="font-weight: 600;">Super User</span></td>
+                                {%else%}
+                                {%if user.active%}
+                                <td style="padding-top: 15px!important;" class="usersActiveStatus" data-user={{user.id}}><span>Active</span> <input   checked="checked" style="margin-left: 10px;margin-top: 5px;" type="checkbox"></td>
+                                {%else%}
+                                <td style="padding-top: 15px!important;" class="usersActiveStatus" data-user={{user.id}}><span>Inactive</span> <input   style="margin-left: 10px;margin-top: 5px;" type="checkbox"></td>
+                                {%endif%}
+                                {%endif%}
+                                <td style="padding-top: 15px!important;">{{user.address}}</td>
+                                {%if user.is_superuser%}
+                                <td>
+                                    <button type="button" class="btn btn-primary btn-sm">Edit</button>
+                                </td>
+                                {%else%}
+                                <td>
+                                    <button type="button" class="btn btn-primary btn-sm">Edit</button>
+                                    <button type="button" class="btn btn-secondary btn-sm">Delete</button>
+                                </td>
+                                {%endif%}
+                              </tr>
+                              {%endfor%}
+                            </tbody>
+                          </table>
+
+                    </div>
+                   
+                    
+                </div>
+
+                <div class="createContent">
+
+                    <div class="myChallanFm">
+
+                        <form action="" method="POST">
+                            {%csrf_token%}
+                            <label for="exampleFormControlInput1" class="form-label">Name</label>
+                            <input  type="text" name="name" required class="form-control" >
+    
+                            <label for="exampleFormControlInput2" class="form-label">Email address</label>
+                            <input type="email" name="email" required class="form-control" >
+    
+                            <label for="exampleFormControlInput3" class="form-label">Place</label>
+                            <input type="text" name="place" required class="form-control" >
+    
+                            <label for="exampleFormControlInput4" class="form-label">Fine</label>
+                            <input type="number" name="fine" required value="500" class="form-control" >
+    
+                            <label for="exampleFormControlInput5" class="form-label">Liscense Number</label>
+                            <input type="number" name="license_number" required class="form-control" >
+    
+                            <label for="exampleFormControlInput6" class="form-label">Vechile Number</label>
+                            <input type="number" name="vechile_number" required class="form-control" >
+    
+                            <label for="exampleFormControlInput1" class="form-label">Vechile Type</label>
+                            <select name="vechile_type" class="form-select"  aria-label="Default select example">
+                                <option selected value="BIKE">Bike</option>
+                                <option value="TRUCK">Truck</option>
+                                <option value="CAR">Car</option>
+                                <option value="SCOOTER">Scooter</option>
+                                <option value="BUS">Bus</option>
+                                <option value="MINI VAN">Mini Van</option>
+                              </select>
+
+                            <button type="submit" class="btn btn-secondary">Save</button>
+                        </form>
+                    </div>
+
+                </div>
+
+                <div class="myChallanContent">
+                  <div class="inner-div">
+                    {%if flag%}
+                  
+                  <table class="table table-striped table-hover">
+                    <thead class="table-dark">
+                      <tr>
+                        <th scope="col">SN</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Fine</th>
+                        <th scope="col">Place</th>
+                        <th scope="col">License Number</th>
+                        <th scope="col">Vechile Type</th>
+                        <th scope="col">Created By</th>
+                        <th scope="col">Print</th>
+                        {%if user.is_superuser%}
+                        <th scope="col">Actions</th>
+                        {%endif%}
+                      </tr>
+                    </thead>
+                    <tbody>
+                        {%for bill in bills%}
+                        {%if bill.created_by == request.user%}
+                      <tr class="form-class">
+                        <th style="padding-top: 15px!important;" scope="row">{{ forloop.counter }}</th>
+                        <td style="padding-top: 15px!important;">{{bill.name}}</td>
+                        <td style="padding-top: 15px!important;">{{bill.email}}</td>
+                        <td style="padding-top: 15px!important;">{{bill.fine}}</td>
+                        <td style="padding-top: 15px!important;">{{bill.place}}</td>
+                        <td style="padding-top: 15px!important;">{{bill.license_number}}</td>
+                        <td style="padding-top: 15px!important;">{{bill.vechile_type}}</td>
+                        <td style="padding-top: 15px!important;"><span style="font-weight: 600;">Self</span></td>
+                        <td style="padding-top: 15px!important;" class="download-pdf" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Download Pdf"><span style="font-weight: 600;">Download</span> <i style="padding-left: 10px;" class="fas fa-download"></i></td>
+                        {%if user.is_superuser%}
+                        <td>
+                            <button type="button" class="btn btn-primary btn-sm">Edit</button>
+                            <button type="button" class="btn btn-secondary btn-sm">Delete</button>
+                        </td>
+                        {%endif%}
+                       
+                      </tr>
+                    {%endif%}
+                      {%endfor%}
+                    </tbody>
+                  </table>
+                  {%else%}
+                  <div style="display: flex;justify-content: center;align-items: center;flex-direction: column;">
+                    <lottie-player src="https://assets9.lottiefiles.com/packages/lf20_ydo1amjm.json"  background="transparent"  speed="1"  style="width: 400px; height: 400px;"  loop  autoplay></lottie-player>
+                    <h1>{{request.user.first_name}}, you have'nt created any challan yet 😄. </h1>
+                  </div>
+                  {%endif%}
+                  </div>
+                </div>
+
+                <div class="allChallanContent">
+                    <div class="inner-div">
+                        <table class="table table-striped table-hover">
+                            <thead class="table-dark">
+                              <tr>
+                                <th scope="col">SN</th>
+                                <th scope="col">Name</th>
+                                <th scope="col">Email</th>
+                                <th scope="col">Fine</th>
+                                <th scope="col">Place</th>
+                                <th scope="col">License Number</th>
+                                <th scope="col">Vechile Type</th>
+                                <th scope="col">Created By</th>
+                                <th scope="col">Print</th>
+                                {%if user.is_superuser%}
+                                <th scope="col">Actions</th>
+                                {%endif%}
+
+                              </tr>
+                            </thead>
+                            <tbody>
+                                {%for bill in bills%}
+                              <tr class="form-class">
+                                <th style="padding-top: 15px!important;" scope="row">{{ forloop.counter }}</th>
+                                <td style="padding-top: 15px!important;">{{bill.name}}</td>
+                                <td style="padding-top: 15px!important;">{{bill.email}}</td>
+                                <td style="padding-top: 15px!important;">{{bill.fine}}</td>
+                                <td style="padding-top: 15px!important;">{{bill.place}}</td>
+                                <td style="padding-top: 15px!important;">{{bill.license_number}}</td>
+                                <td style="padding-top: 15px!important;">{{bill.vechile_type}}</td>
+                                <td style="padding-top: 15px!important;">{{bill.created_by}}</td>
+                                <td style="padding-top: 15px!important;" class="download-pdf" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Download Pdf"><span style="font-weight: 600;">Download</span> <i style="padding-left: 10px;" class="fas fa-download"></i></td>
+                                {%if user.is_superuser%}
+                                <td>
+                                    <button type="button" class="btn btn-primary btn-sm">Edit</button>
+                                    <button type="button" class="btn btn-secondary btn-sm">Delete</button>
+                                </td>
+                                {%endif%}
+                              </tr>
+                              {%endfor%}
+                            </tbody>
+                          </table>
+                      </div>
+                </div>
+
+                <div class="myProfileContent">
+                    <div class="inner">
+                        <img src="{{user.profile.url}}" alt="profile image" height="300" width="300">
+
+                        <section>
+                            <h1> {{request.user.first_name}} {{request.user.last_name}} </h1>
+                            <h4><i class="fas fa-envelope" style="margin-right: 10px;"></i> {{request.user.email}}</h4>
+                            <h4><i class="fas fa-birthday-cake" style="margin-right: 10px;"></i> {{request.user.date_of_birth}}</h4>
+                            <h4><i class="fas fa-location-arrow" style="margin-right: 10px;"></i> {{request.user.address}}</h4>
+                            <button class="btn btn-outline-secondary">Edit Profile</button>
+                        </section>
+                       
+                      </div>
+                        
+                    </div>
+                </div>
+
+            </div>
+
+          
+
+        </section>
+
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <script>
+
+        var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+        var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+          return new bootstrap.Tooltip(tooltipTriggerEl)
+        })
+        
+        
+        
+        const dashboard = document.querySelector(".dashboard")
+        
+        try{
+        const users = document.querySelector(".users")
+        
+            
+        users.addEventListener("click",()=>{
+            topIndication.innerHTML="Users"
+            document.querySelector(".global").style.display="block"
+            dashboard.classList.remove('active')
+            users.classList.add('active')
+            allChallans.classList.remove('active')
+            myChallans.classList.remove('active')
+            createChallan.classList.remove('active')
+        
+            dashContent.classList.remove('activeContent')
+            userContent.classList.add('activeContent')
+            allChallanContent.classList.remove('activeContent')
+            myChallanContent.classList.remove('activeContent')
+            createContent.classList.remove('activeContent')
+            myProfileContent.classList.remove('activeContent')
+        
+        })
+        }
+        catch(err){}
+        
+        const allChallans = document.querySelector(".allChallans")
+        const myChallans = document.querySelector(".myChallans")
+        const createChallan = document.querySelector(".createChallan")
+        const myProfile = document.querySelector(".myProfile")
+        
+        
+        const dashContent = document.querySelector(".dashContent")
+        const userContent = document.querySelector(".userContent")
+        const allChallanContent = document.querySelector(".allChallanContent")
+        const myChallanContent = document.querySelector(".myChallanContent")
+        const createContent = document.querySelector(".createContent")
+        const myProfileContent = document.querySelector(".myProfileContent")
+        
+        const topIndication = document.querySelector("nav h4")
+        const global = document.querySelector(".global")
+        
+        
+        
+        
+        
+        dashboard.addEventListener("click",()=>{
+            topIndication.innerHTML="Dashboard"
+            document.querySelector(".global").style.display="block"
+            dashboard.classList.add('active')
+        
+            try{
+                const users = document.querySelector(".users")
+                users.classList.remove('active')
+            }catch(err){}
+            allChallans.classList.remove('active')
+            myChallans.classList.remove('active')
+            createChallan.classList.remove('active')
+            myProfile.classList.remove('active')
+        
+        
+            dashContent.classList.add('activeContent')
+            userContent.classList.remove('activeContent')
+            allChallanContent.classList.remove('activeContent')
+            myChallanContent.classList.remove('activeContent')
+            createContent.classList.remove('activeContent')
+            myProfileContent.classList.remove('activeContent')
+        
+        })
+        
+        
+        allChallans.addEventListener("click",()=>{
+            topIndication.innerHTML="All Challans"
+            document.querySelector(".global").style.display="block"
+            dashboard.classList.remove('active')
+            try{
+                const users = document.querySelector(".users")
+                users.classList.remove('active')
+            }catch(err){}
+            allChallans.classList.add('active')
+            myChallans.classList.remove('active')
+            createChallan.classList.remove('active')
+            myProfile.classList.remove('active')
+        
+        
+            dashContent.classList.remove('activeContent')
+            userContent.classList.remove('activeContent')
+            allChallanContent.classList.add('activeContent')
+            myChallanContent.classList.remove('activeContent')
+            createContent.classList.remove('activeContent')
+            myProfileContent.classList.remove('activeContent')
+        
+        })
+        
+        myChallans.addEventListener("click",()=>{
+            topIndication.innerHTML="My Challans"
+            document.querySelector(".global").style.display="block"
+            dashboard.classList.remove('active')
+            try{
+                const users = document.querySelector(".users")
+                users.classList.remove('active')
+            }catch(err){}
+            allChallans.classList.remove('active')
+            myChallans.classList.add('active')
+            createChallan.classList.remove('active')
+            myProfile.classList.remove('active')
+        
+        
+            dashContent.classList.remove('activeContent')
+            userContent.classList.remove('activeContent')
+            allChallanContent.classList.remove('activeContent')
+            myChallanContent.classList.add('activeContent')
+            createContent.classList.remove('activeContent')
+            myProfileContent.classList.remove('activeContent')
+        
+        
+        })
+        
+        createChallan.addEventListener("click",()=>{
+            topIndication.innerHTML="Create Challan"
+            document.querySelector(".global").style.display="none"
+            dashboard.classList.remove('active')
+            try{
+                const users = document.querySelector(".users")
+                users.classList.remove('active')
+            }catch(err){}
+            allChallans.classList.remove('active')
+            myChallans.classList.remove('active')
+            createChallan.classList.add('active')
+            myProfile.classList.remove('active')
+        
+        
+            dashContent.classList.remove('activeContent')
+            userContent.classList.remove('activeContent')
+            allChallanContent.classList.remove('activeContent')
+            myChallanContent.classList.remove('activeContent')
+            createContent.classList.add('activeContent')
+            myProfileContent.classList.remove('activeContent')
+        
+        })
+        
+        myProfile.addEventListener("click",()=>{
+            topIndication.innerHTML="My Profile Details"
+            document.querySelector(".global").style.display="block"
+        
+            dashboard.classList.remove('active')
+            try{
+                const users = document.querySelector(".users")
+                users.classList.remove('active')
+            }catch(err){}
+            allChallans.classList.remove('active')
+            myChallans.classList.remove('active')
+            createChallan.classList.remove('active')
+            myProfile.classList.add('active')
+        
+        
+            dashContent.classList.remove('activeContent')
+            userContent.classList.remove('activeContent')
+            allChallanContent.classList.remove('activeContent')
+            myChallanContent.classList.remove('activeContent')
+            createContent.classList.remove('activeContent')
+            myProfileContent.classList.add('activeContent')
+        })
+        
+        global.addEventListener("click",()=>{
+            document.querySelector(".global").style.display="none"
+            topIndication.innerHTML="Create Challan"
+            dashboard.classList.remove('active')
+            try{
+                const users = document.querySelector(".users")
+                users.classList.remove('active')
+            }catch(err){}
+            allChallans.classList.remove('active')
+            myChallans.classList.remove('active')
+            createChallan.classList.add('active')
+            myProfile.classList.remove('active')
+        
+        
+            dashContent.classList.remove('activeContent')
+            userContent.classList.remove('activeContent')
+            allChallanContent.classList.remove('activeContent')
+            myChallanContent.classList.remove('activeContent')
+            createContent.classList.add('activeContent')
+            myProfileContent.classList.remove('activeContent')
+        
+        })
+        
+        
+        const profile =   document.getElementById("id_profile");
+        
+        //changing profile
+        document.querySelector(".userProfile img").addEventListener("click",()=>{
+            profile.click()
+        })
+
+        document.querySelector(".inner img").addEventListener("click",()=>{
+            profile.click()
+        })
+        
+        profile.addEventListener("change",()=>{
+            document.querySelector(".userProfile form button").click()
+        })
+        
+        //user profile
+        let open=false
+        
+        document.querySelector(".showEdit").addEventListener("click",()=>{
+        
+            if(!open){
+                document.querySelector(".editDetails").style.display="block"
+                document.querySelector(".showEdit").classList.add("rotate")
+                open=true
+            }
+            else{
+                document.querySelector(".editDetails").style.display="none"
+                document.querySelector(".showEdit").classList.remove("rotate")
+                open=false
+            }
+        })
+        
+
+        //user active status
+        var usr = document.querySelectorAll(".usersActiveStatus");
+
+        usr.forEach(i=>{
+            i.addEventListener("change",()=>{
+
+               
+                let uid=i.getAttribute('data-user')
+
+                let url = `http://localhost:8000/change-user-status/${uid}`
+
+                document.querySelector(".loading").style.display="flex"
+
+                async function changeUserStatus(url) {
+                let res = await fetch(url);
+                let data = await res.json();
+                console.log(data)
+                }
+
+
+                setTimeout(()=>{
+                    changeUserStatus(url)
+                    if(i.firstChild.innerHTML=="Inactive"){
+                    i.firstChild.innerHTML="Active"
+                }
+                else{
+                    i.firstChild.innerHTML="Inactive"
+                }
+                    document.querySelector(".loading").style.display="none"
+                },2000)
+     
+            })
+        })
+
+
+//User account edit
+ 
+document.querySelector(".edit_my_profile").addEventListener("click",()=>{
+    document.querySelector(".editDetails").style.display="none"
+    document.querySelector(".userEditProfileForm").style.display="flex"
+})
+
+document.querySelector(".inner section button").addEventListener("click",()=>{
+    document.querySelector(".userEditProfileForm").style.display="flex"
+})
+
+document.querySelector(".userEditProfileForm form i").addEventListener("click",()=>{
+    document.querySelector(".userEditProfileForm").style.display="none"
+})
+       
+//chart js
+
+const data = {
+  labels: [
+    'Total Users',
+    'My Challans',
+    'All Challans'
+  ],
+  datasets: [{
+    label: '',
+    data: [2, 1, 2],
+    backgroundColor: [
+      'rgb(255, 99, 132)',
+      'rgb(54, 162, 235)',
+      'rgb(255, 205, 86)'
+    ],
+    hoverOffset: 4
+  }]
+};
+
+const config = {
+  type: 'doughnut',
+  data: data,
+};
+
+var ctx = document.getElementById('myChart');
+var myChart = new Chart(ctx, config);
+
+
+        
+       
+        
+        
+        
+        
+        </script>
+
+    {%else%}
+
+    <div class="unavailable">
+
+        <lottie-player src="https://assets7.lottiefiles.com/packages/lf20_aqe5gj9x.json"  background="transparent"  speed="1"  style="width: 300px; height: 300px;"  loop  autoplay></lottie-player>
+        <h1>{{user.first_name}}, your account is not active yet 😢.</h1>
+        <a href="{%url "logout"%}" style="display: block;margin-top: 20px;" class="btn btn-secondary">Logout</a>
+
+
+    </div>
+    {%endif%}
+
+    
+
+
+<script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+</body>
+</html>

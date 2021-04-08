@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Delete</title>
+</head>
+<body>
+
+    {%if user.is_superuser%}
+
+    <h1>Delete Bill</h1>
+    <br>
+    <form method="post">{% csrf_token %}
+        <p>Are you sure you want to delete bill of <span style="font-weight: bold;">{{ object.name }}</span>  by <span style="font-weight: bold;">{{ object.created_by }}</span>?</p>
+        <input type="submit" value="Confirm">
+    </form>
+
+    {%else%}
+
+    <center>
+        <h1>Hmm.. Looks like you are in wrong Route.</h1>
+        <a href="{%url "home"%}">Go to home page</a>
+    </center>
+
+    {%endif%}
+    
+</body>
+</html>

@@ -1,0 +1,96 @@
+{%extends "base.html"%}
+{%load static%}
+
+{%block css%}
+<style>
+
+    .get_started:hover{
+        background-color: black;
+        transition: .2s ease-in-out;
+    }
+    .main_container{
+        font-family: 'Public Sans',sans-serif;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        margin: 20px 0;
+        margin-top: 0;
+    }
+    .main_container img{
+        height: 400px;
+        animation: breathing 8s linear infinite;
+        filter: drop-shadow(1px 1px 0px rgba(0, 0, 0, 0.801));
+    }
+    .quote{
+        text-align: center;
+        font-family: 'Public Sans',sans-serif;
+        font-size: 3rem;
+         text-shadow: 1px 4px #ff000038;
+    }
+    .quote2{
+        font-family: 'Public Sans',sans-serif;
+        margin:15px 0%;
+        font-size: 20px;
+        line-height: 1.6rem;
+        letter-spacing: 0.08em;
+        text-align: center;
+        color: rgba(0, 0, 0, 0.856);
+    
+    }
+    .get__{
+        display: flex;
+        justify-content: center;
+        margin: 2rem 0;
+    }
+    .get_started{
+        font-family: 'Public Sans',sans-serif;
+        background-color: #000000d4;
+        padding: 12px 40px;
+        text-decoration: none;
+        border-radius: 8px;
+        color: rgba(255, 255, 255, 0.87);
+        transition: .2s ease-in-out;
+    }
+    
+    @keyframes breathing {
+      0% {
+        transform: scale(0.9);
+      }
+    
+      25% {
+        transform: scale(1);
+      }
+    
+      75% {
+        transform: scale(0.9);
+      }
+    
+      100% {
+        transform: scale(0.9);
+      }
+    }
+    
+    .crisp-client .cc-kv6t .cc-1xry .cc-ge4v .cc-qqzz .cc-5b24 .cc-19cg .cc-z2iy{
+        opacity: 0;
+    }
+</style>
+
+{%endblock css%}
+
+
+{%block main_content%}
+
+<div class="main_container">
+    <img src="{%static "images/main.png"%}" alt="main back">
+</div>
+
+<h1 class="quote">Challan made simple than ever</h1>
+<p class="quote2">Create challan bills for all purposes in seconds !</p>
+<div class="get__">
+    <a  class="get_started" href="{%url "login"%}">Get Started</a>
+</div>
+
+<script type="text/javascript">window.$crisp=[];window.CRISP_WEBSITE_ID="8de440e9-23cd-4c7c-8d38-ed26a1e63978";(function(){d=document;s=d.createElement("script");s.src="https://client.crisp.chat/l.js";s.async=1;d.getElementsByTagName("head")[0].appendChild(s);})();</script>
+{%endblock main_content%}
+
+

@@ -1,0 +1,302 @@
+{%extends "base.html"%}
+{%load static%}
+
+
+{%block css%}
+<style>
+    .userError,.passError{
+        display: none;
+        color: red;
+        font-size: 14px;
+    }
+    *{
+        margin: 0;padding: 0;box-sizing: border-box;
+    }
+
+    .main_auth_section{
+        font-family: 'Montserrat',sans-serif;
+        height: 80vh;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .auth_section{
+        height: 65vh;
+        display: flex;
+        width: 50vw;
+        box-shadow: 1px 1px 5px #00000014;
+    }
+
+    .image_section{
+        flex: 1;
+        background: linear-gradient(180deg, #0F0C29 0%, #302B63 52.92%, #24243E 98.23%);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+    }
+    .flag{
+        position: absolute;
+        top: 15%;
+        left: 45%;
+    }
+    .image_section .main_img{
+        width: 80%;
+    }
+
+    .icon__{
+        position: relative;
+    }
+    .icon__ i{
+        position: absolute;
+        color: rgba(0, 0, 0, 0.6);
+        top: 40%;
+        right:16%;
+
+    }
+
+
+    .form_section{
+        flex: 1;
+        padding: 30px 20px;
+        padding-top: 100px;
+    }
+
+    /* .create_challan{
+        font-weight: 600;
+        line-height: 1rem;
+        font-size: 1.3rem;
+        margin: 2rem 0;
+    } */
+    .welcome{
+        margin-bottom: 0.8rem;
+    }
+    .welcome span{
+        font-weight: 500;
+    }
+    .username,.password{
+        background: none;
+        border-radius: 45px;
+        padding: 15px;
+        outline: none;
+        border: 1px solid rgba(167, 208, 255);
+        width: 90%;
+        margin: 10px 0;           
+    }
+
+    input::placeholder{
+        letter-spacing: 0.1em;
+    }
+
+    .forget_pass{
+        text-align: right;
+        width: 90%;
+        margin: .5rem;
+        font-size: 15px;
+    }
+    .forget_pass a{
+        text-decoration: none;
+        color: black;
+    }
+
+    .login_btn{
+        border: none;
+        outline: none;
+        padding: 12px 30px;
+        background: rgba(22, 19, 54, 0.84);
+        border-radius: 45px;
+        color: white;
+        font-weight: 500;
+        width: 42%;
+        transition: .1s linear;
+    }
+
+       .login_btn:hover{
+        cursor: pointer;
+        transition: .1s linear;
+        box-shadow: 0px 1px 3px #00000078;
+    }
+
+  
+    .signup_inc{
+        font-size: 15px;
+        color: rgba(0, 0, 0, 0.822);
+        margin: 1rem 0;
+    }
+
+    .signup_inc a{
+        text-decoration: none;
+        color: black;
+        font-weight: 500;
+    }
+
+
+@media(max-width: 1300px){
+
+    .auth_section{
+        width: 65vw;
+    }
+
+}
+
+@media(max-width: 1150px){
+
+        .auth_section{
+            width: 80vw;
+        }
+
+}
+
+@media(max-width: 768px){
+
+.icon__ i{
+        right:8%;
+    }
+
+    .auth_section{
+        width: 60vw;
+        box-shadow: 0px 1px 10px #00000042;
+        height: 55vh;
+    }
+    .image_section{
+        display: none;
+    }
+    .username,.password,.forget_pass{
+      width: 100%;        
+    }
+    .form_section{
+        padding: 30px;
+        padding-top: 50px;
+        }
+
+
+}
+
+@media(max-width: 699px){
+
+.auth_section{
+width: 70vw;
+}
+
+}
+
+@media(max-width: 599px){
+
+.auth_section{
+width: 80vw;
+}
+
+}
+ 
+
+
+
+</style>
+{%endblock css%}
+
+
+
+{%block main_content%}
+<div class="main_auth_section">
+
+    <div class="auth_section">
+
+        <section class="image_section">
+
+            <img class="main_img" src="{%static "images/login.png"%}" alt="symbol">
+            <img class="flag" src="{%static "images/flag.png"%}" height="100px" width="100px" alt="">
+
+        </section>
+
+
+        <section class="form_section">
+
+        <form action="{%url "login"%}" method="POST" id="loginForm" >
+            {%csrf_token%}
+
+        <!-- <p class="create_challan">Create Challan Online</p> -->
+
+        <p class="welcome"><span>Good Morning!</span> please login to your account</p>
+
+        {%if messages%}
+        {% for message in messages %}
+        <p style="color: red;font-weight: bold;font-size: 14px;"  class="backErr">{{ message }}</p>
+        {% endfor %}
+    {%endif%}
+
+       <p class="icon__">
+        <input type="text" placeholder="Email or Username" name="username" class="username">
+        <i class="fas fa-envelope"></i>
+       </p>
+        
+        <p class="userError">Username required</p>
+        
+        <p class="icon__">
+        <input type="password" placeholder="Password" name="password" class="password">
+        <i class="fas fa-lock"></i>
+        </p>
+        
+        <p class="passError">Password required</p>
+
+        <p class="forget_pass"><a href="">Forget password?</a></p>
+        <input type="submit" class="login_btn" value="Login">
+        
+        <p class="signup_inc">Don't have an account? <a class="signup_" href="{%url "signup"%}">Signup</a></p>
+            
+        </form>
+        
+        </section>
+
+    </div>
+
+</div>
+
+{%endblock main_content%}
+
+
+{%block js%}
+<script>
+
+    const form = document.getElementById("loginForm")
+    const  uname = document.querySelector(".username")
+    const  pass = document.querySelector(".password")
+    const  userErr = document.querySelector(".userError")
+    const  passErr = document.querySelector(".passError")
+    
+    
+    form.addEventListener("submit",(e)=>{
+    
+    if(uname.value=="" && pass.value==""){
+        e.preventDefault()
+        userErr.style.display="block"
+        passErr.style.display="block"
+        uname.focus()
+        return false
+    }
+    if(uname.value==""){
+        e.preventDefault()
+        uname.focus()
+        userErr.style.display="block"
+        passErr.style.display="none"
+        return false
+    }
+    if(pass.value==""){
+        e.preventDefault()
+        pass.focus()
+        passErr.style.display="block"
+        userErr.style.display="none"
+        return false
+    }
+    
+    return true
+    
+    })
+    
+    
+    
+    
+    
+    </script>
+{%endblock js%}

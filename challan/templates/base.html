@@ -1,0 +1,99 @@
+{%load static%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to e-challan system</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" />
+<style>
+
+    *{
+        margin: 0;padding: 0;box-sizing: border-box;
+    }
+
+nav{
+    font-family: 'Public Sans',sans-serif;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 20px 8%;
+    padding-top: 30px;
+    position: relative;
+    box-shadow: 1px 1px 3px #0000002e;
+}
+
+.logo img{
+    position: absolute;
+    left: 8%;
+    top: -50%;
+}
+.login_signup{
+    display: flex;
+    align-items: center;
+}
+.login_signup a{
+    text-decoration: none;
+    color: rgba(0, 0, 0, 0.884);
+    display: block;
+    margin-left: 30px;
+    font-weight: 300;
+}
+.login_signup .login__{
+    background-color: #000000d4;
+    padding: 8px 30px;
+    border-radius: 8px;
+    color: rgba(255, 255, 255, 0.87);
+    transition: .2s ease-in-out;
+}
+
+.sign__up:hover{
+    color: black;
+}
+
+.login__:hover,.get_started:hover{
+    background-color: black;
+    transition: .2s ease-in-out;
+}
+
+</style>
+
+
+{%block css%}
+{%endblock css%}
+
+
+</head>
+<body>
+
+    <nav>
+        <section class="logo">
+        <img src="{%static "images/logo.svg"%}" height="180px" width="180px"  alt="logo">
+        </section>
+
+        <section class="login_signup">
+            <a href="" class="sign__up">Pay Challan</a>
+            <a href="" class="sign__up">News</a>
+            <a href="{%url "signup"%}" class="sign__up">Signup</a>
+            <a  class="login__" href="{%url "login"%}">Login</a>
+        </section>
+    </nav>
+
+    {%block main_content%}
+    {%endblock main_content%}
+
+
+    {%block js%}
+    {%endblock js%}
+
+<script>
+    document.querySelector(".logo img").addEventListener("click",()=>{
+        window.location.href="/"
+    })
+</script>
+
+</body>
+</html>

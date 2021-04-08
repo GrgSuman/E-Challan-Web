@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bill Details</title>
+</head>
+<body>
+    
+    <h1>Bill Detail Information</h1>
+    <br><br>
+
+    {%if user.is_superuser%}
+    <a href={%url "update" object.id%}>Update</a>
+    <a href="{%url "delete" object.id%}">Delete</a>
+    {%endif%}
+  
+   <h2> Name:</h2>
+    <h4>{{ object.name }}</h4> 
+   
+    <h2> Location:</h2>
+    <h4>{{ object.place }}</h4> 
+
+    <h2> Fine:</h2>
+    <h4>Rs.{{ object.fine }}</h4> 
+
+   
+    <h2> Email:  </h2>
+    <h4>{{ object.email }}</h4>
+    
+    <h2>License Number:</h2>
+    <h4>{{ object.license_number }}</h4> 
+
+   
+    <h2> Vechile Number:</h2>
+    <h4>{{ object.vechile_number }}</h4> 
+
+    
+    <h2>Vechile Type:</h2>
+    <h4>{{ object.vechile_type }}</h4> 
+
+    <h2> Created By:</h2>
+    <h4>{{ object.created_by }}</h4> 
+
+</body>
+</html>
