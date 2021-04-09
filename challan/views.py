@@ -36,7 +36,7 @@ class Login(View):
             return redirect("home")
 
         else:
-           messages.error(request,"Username or Password didnot match.")
+           messages.error(request,"Username or Password did not match.")
            return redirect("login")
 
 class UserSignUp(View):
