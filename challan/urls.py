@@ -16,5 +16,6 @@ urlpatterns = [
    path("update-profile/<pk>",login_required(views.UpdateUser.as_view()),name="update_user"),
    path("update-profile-photo",login_required(views.UpdateUserPhoto.as_view()),name="update-user-photo"),
    path("delete/<pk>",login_required(views.DeleteBill.as_view()),name="delete"),
+   path("delete-user/<pk>",login_required(views.DeleteUser.as_view()),name="deleteUser"),
    path("change-user-status/<pk>",views.ChangeUserStatus.as_view())
 ]

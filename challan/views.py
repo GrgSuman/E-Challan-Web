@@ -126,24 +126,28 @@ class BillDetails(DeleteView):
 class UpdateBill(UpdateView):
     model = Challan
     template_name = "update.html"
-    fields = ["name","email",'place',"license_number","vechile_number","vechile_type"]
+    fields = ["name","email",'place',"fine","license_number","vechile_number","vechile_type"]
 
 
 class UpdateUser(View):
+
+    def get(self,request,pk):
+        usr = CustomUser.objects.get(id=pk)
+        return render(request,"editProfile.html",{"editUser":usr})
     
     def post(self,request,pk):
-       
-            fm = UserUpdateForm(data=request.POST,instance=request.user)
-            if fm.is_valid():
-                fm.save()
-                usr = CustomUser.objects.get(id=pk)
-                fullname = request.POST.get("fullname").split()
-                usr.first_name=fullname[0]
-                usr.last_name=fullname[len(fullname)-1] 
-                usr.save()
-                return redirect("home")
-            else:
-                return redirect("home")
+        usr = CustomUser.objects.get(id=pk)
+        fm = UserUpdateForm(data=request.POST,instance=usr)
+        if fm.is_valid():
+            fm.save()
+            usr = CustomUser.objects.get(id=pk)
+            fullname = request.POST.get("fullname").split()
+            usr.first_name=fullname[0]
+            usr.last_name=fullname[len(fullname)-1] 
+            usr.save()
+            return redirect("home")
+        else:
+            return redirect("home")
         
 
 class UpdateUserPhoto(View):
@@ -161,6 +165,15 @@ class DeleteBill(DeleteView):
     model = Challan
     success_url = reverse_lazy('home')
     template_name = "delete.html"
+
+
+
+class DeleteUser(DeleteView):
+    model = CustomUser
+    success_url = reverse_lazy('home')
+    template_name = 'delete.html'
+
+    
 
 
 

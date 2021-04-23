@@ -251,7 +251,7 @@ display: none;
     transform: rotate(30deg);
 }
 
-.userEditProfileForm{
+.userEditProfileForm,.challanEdit_{
     height: 100vh;
     width: 100vw;
     background-color:#0000007d;
@@ -262,7 +262,7 @@ display: none;
     display: none;
 
 }
-.userEditProfileForm form{
+.userEditProfileForm form,.challanEdit_ form{
     width:30% ;
     position: relative;
     background-color: rgba(255, 255, 255);
@@ -270,13 +270,13 @@ display: none;
     border-radius:10px;
     box-shadow: 2px 2px 12px #00000017;
 }
-.userEditProfileForm form i{
+.userEditProfileForm form i,.challanEdit_ form i{
     position: absolute;
     top: 20px;
     right: 20px;
     color: rgba(0, 0, 0, 0.671);
 }
-.userEditProfileForm form i:hover{
+.userEditProfileForm form i:hover,.challanEdit_ form i:hover{
     cursor: pointer;
     color: black;
 }
@@ -376,6 +376,11 @@ align-items: center;
 }
 
 
+.challanEdit_ form{
+    width: 45%;
+    padding: 4%;
+}
+
 
     </style>
 </head>
@@ -386,30 +391,36 @@ align-items: center;
     
     <i class="fas fa-plus global" data-bs-toggle="tooltip" data-bs-placement="top" title="Create Challan"></i>
 
+
+    <!-- User profile Form edit -->
+
     <div class="userEditProfileForm">
 
         <form action="{%url 'update_user' request.user.id%}" method="POST">
             {%csrf_token%}
             <i class="fas fa-times"></i>
             <label for="exampleFormControlInput1" class="form-label">Name</label>
-            <input type="text" name="fullname" required class="form-control" value="{{request.user.first_name}} {{request.user.last_name}}" id="">
+            <input type="text" name="fullname" required class="form-control" value="{{request.user.first_name}} {{request.user.last_name}}" >
 
             <label for="exampleFormControlInput2" class="form-label">Date of Birth</label>
-            <input type="date" name="date_of_birth" required class="form-control" value="{{request.user.date_of_birth|date:"Y-m-d"}}" id="">
+            <input type="date" name="date_of_birth" required class="form-control" value="{{request.user.date_of_birth|date:"Y-m-d"}}">
 
             <label for="exampleFormControlInput3" class="form-label">Email</label>
-            <input type="text" name="username" required class="form-control" value="{{request.user.email}}" id="">
+            <input type="text" name="username" required class="form-control" value="{{request.user.email}}" >
 
             <label for="exampleFormControlInput3" class="form-label">Address</label>
-            <input type="text" required name="address" class="form-control" value="{{request.user.address}}" id="">
+            <input type="text" required name="address" class="form-control" value="{{request.user.address}}">
 
             <button type="submit" class="btn btn-warning mt-3">Update</button>
         </form>
 
     </div>
 
+    <!-- USer profile Form edit end -->
 
-    
+
+
+
 
 
     <div class="rootContainer">
@@ -474,17 +485,17 @@ align-items: center;
 
                         <section class="infoContainers">
 
-                            <div class="infoContainer1" style="background:#273c75;">
+                            <div class="infoContainer1" style="background:#ff6384;">
                              <h3 style="font-weight: 400;">Total Users</h3>
                               <h2 style="margin-top: 1rem;"> {{totalUsers}}</h2>
                             </div>
 
-                            <div class="infoContainer2" style="background:#7f8fa6;">
+                            <div class="infoContainer2" style="background:#36a2eb;">
                                 <h3 style="font-weight: 400;">My Challans</h3>
                                 <h2 style="margin-top: 1rem;">{{myChallan}}</h2>
                             </div>
 
-                            <div class="infoContainer3" style="background:#e1b12c;">
+                            <div class="infoContainer3" style="background:#ffcd56;">
                                 <h3 style="font-weight: 400;">Total Challans</h3>
                                 <h2 style="margin-top: 1rem;">{{totalChallan}}</h2>
                             </div>
@@ -532,30 +543,30 @@ align-items: center;
                               </tr>
                             </thead>
                             <tbody>
-                                {%for user in users%}
+                                {%for usr in users%}
                               <tr class="form-class">
                                 <th style="padding-top: 15px!important;" scope="row">{{ forloop.counter }}</th>
-                                <td style="padding-top: 15px!important;">{{user.first_name}}</td>
-                                <td style="padding-top: 15px!important;">{{user.last_name}}</td>
-                                <td style="padding-top: 15px!important;">{{user.username}}</td>
-                                {%if user.is_superuser%}
+                                <td style="padding-top: 15px!important;">{{usr.first_name}}</td>
+                                <td style="padding-top: 15px!important;">{{usr.last_name}}</td>
+                                <td style="padding-top: 15px!important;">{{usr.username}}</td>
+                                {%if usr.is_superuser%}
                                 <td style="padding-top: 15px!important;"><span style="font-weight: 600;">Super User</span></td>
                                 {%else%}
-                                {%if user.active%}
+                                {%if usr.active%}
                                 <td style="padding-top: 15px!important;" class="usersActiveStatus" data-user={{user.id}}><span>Active</span> <input   checked="checked" style="margin-left: 10px;margin-top: 5px;" type="checkbox"></td>
                                 {%else%}
                                 <td style="padding-top: 15px!important;" class="usersActiveStatus" data-user={{user.id}}><span>Inactive</span> <input   style="margin-left: 10px;margin-top: 5px;" type="checkbox"></td>
                                 {%endif%}
                                 {%endif%}
-                                <td style="padding-top: 15px!important;">{{user.address}}</td>
-                                {%if user.is_superuser%}
+                                <td style="padding-top: 15px!important;">{{usr.address}}</td>
+                                {%if usr.is_superuser%}
                                 <td>
-                                    <button type="button" class="btn btn-primary btn-sm">Edit</button>
+                                    <button type="button" class="btn btn-primary btn-sm"><a href="{%url "update_user" usr.id%}" style="color: white;text-decoration: none;">Edit </a></button>
                                 </td>
                                 {%else%}
                                 <td>
-                                    <button type="button" class="btn btn-primary btn-sm">Edit</button>
-                                    <button type="button" class="btn btn-secondary btn-sm">Delete</button>
+                                    <button type="button" class="btn btn-primary btn-sm"><a href="{%url "update_user" usr.id%}" style="color: white;text-decoration: none;">Edit </a></button>
+                                    <button type="button" class="btn btn-secondary btn-sm"><a href="{%url "deleteUser" usr.id%}" style="color: white;text-decoration: none;">Delete </a></button>
                                 </td>
                                 {%endif%}
                               </tr>
@@ -644,8 +655,8 @@ align-items: center;
                         <td style="padding-top: 15px!important;" class="download-pdf" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Download Pdf"><span style="font-weight: 600;">Download</span> <i style="padding-left: 10px;" class="fas fa-download"></i></td>
                         {%if user.is_superuser%}
                         <td>
-                            <button type="button" class="btn btn-primary btn-sm">Edit</button>
-                            <button type="button" class="btn btn-secondary btn-sm">Delete</button>
+                            <button type="button" class="btn btn-primary btn-sm"><a href="{%url "update" bill.id%}" style="color: white;text-decoration: none;">Edit</a></button>
+                            <button type="button" class="btn btn-secondary btn-sm"><a href="{%url "delete" bill.id%}" style="color: white;text-decoration: none;">Delete </a></button>
                         </td>
                         {%endif%}
                        
@@ -697,8 +708,8 @@ align-items: center;
                                 <td style="padding-top: 15px!important;" class="download-pdf" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Download Pdf"><span style="font-weight: 600;">Download</span> <i style="padding-left: 10px;" class="fas fa-download"></i></td>
                                 {%if user.is_superuser%}
                                 <td>
-                                    <button type="button" class="btn btn-primary btn-sm">Edit</button>
-                                    <button type="button" class="btn btn-secondary btn-sm">Delete</button>
+                                    <button type="button" class="btn btn-primary btn-sm"><a href="{%url "update" bill.id%}" style="color: white;text-decoration: none;">Edit</a></button>
+                                    <button type="button" class="btn btn-secondary btn-sm"><a href="{%url "delete" bill.id%}" style="color: white;text-decoration: none;">Delete</a></button>
                                 </td>
                                 {%endif%}
                               </tr>
@@ -723,6 +734,8 @@ align-items: center;
                       </div>
                         
                     </div>
+
+
                 </div>
 
             </div>
@@ -732,6 +745,8 @@ align-items: center;
         </section>
 
     </div>
+
+
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
     <script>
@@ -980,7 +995,7 @@ align-items: center;
                 async function changeUserStatus(url) {
                 let res = await fetch(url);
                 let data = await res.json();
-                console.log(data)
+               alert(data)
                 }
 
 
@@ -1013,18 +1028,26 @@ document.querySelector(".inner section button").addEventListener("click",()=>{
 document.querySelector(".userEditProfileForm form i").addEventListener("click",()=>{
     document.querySelector(".userEditProfileForm").style.display="none"
 })
+
        
 //chart js
+
+
+let x = document.querySelector(".infoContainer1 h2").innerHTML
+let y = document.querySelector(".infoContainer2 h2").innerHTML
+let z = document.querySelector(".infoContainer3 h2").innerHTML
 
 const data = {
   labels: [
     'Total Users',
     'My Challans',
-    'All Challans'
+    'Total Challans'
   ],
+
+
   datasets: [{
     label: '',
-    data: [2, 1, 2],
+    data: [x, y, z],
     backgroundColor: [
       'rgb(255, 99, 132)',
       'rgb(54, 162, 235)',
