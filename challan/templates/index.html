@@ -381,6 +381,16 @@ align-items: center;
     padding: 4%;
 }
 
+.list_bill{
+    padding: 20px 10px;
+    font-weight: 500;
+}
+
+.list_bill:hover{
+    background-color: #4142c212;
+    /* cursor: pointer; */
+}
+
 
     </style>
 </head>
@@ -506,7 +516,12 @@ align-items: center;
                         <section class="users_pie">
 
                             <div class="list_users">
-                             <h4>Users</h4>
+                             <h4>Recent Challans</h4>
+                             {%for bill in bills%}
+                             {% if forloop.counter < 5 %}
+                             <p class="list_bill">{{ forloop.counter }}. {{bill.name}} was fined Rs. {{bill.price}} at {{bill.place}}</p>
+                             {%endif%}
+                             {%endfor%}
                             </div>
 
                             <div class="round_pie">
@@ -553,9 +568,9 @@ align-items: center;
                                 <td style="padding-top: 15px!important;"><span style="font-weight: 600;">Super User</span></td>
                                 {%else%}
                                 {%if usr.active%}
-                                <td style="padding-top: 15px!important;" class="usersActiveStatus" data-user={{user.id}}><span>Active</span> <input   checked="checked" style="margin-left: 10px;margin-top: 5px;" type="checkbox"></td>
+                                <td style="padding-top: 15px!important;" class="usersActiveStatus" data-user={{usr.id}}><span>Active</span> <input   checked="checked" style="margin-left: 10px;margin-top: 5px;" type="checkbox"></td>
                                 {%else%}
-                                <td style="padding-top: 15px!important;" class="usersActiveStatus" data-user={{user.id}}><span>Inactive</span> <input   style="margin-left: 10px;margin-top: 5px;" type="checkbox"></td>
+                                <td style="padding-top: 15px!important;" class="usersActiveStatus" data-user={{usr.id}}><span>Inactive</span> <input   style="margin-left: 10px;margin-top: 5px;" type="checkbox"></td>
                                 {%endif%}
                                 {%endif%}
                                 <td style="padding-top: 15px!important;">{{usr.address}}</td>

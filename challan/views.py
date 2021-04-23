@@ -19,7 +19,6 @@ def welcome(request):
 
 
 
-
 class Login(View):
 
     def get(self,request):
@@ -70,17 +69,6 @@ def LogOut(request):
     return redirect("login")
 
 
-def UnactiveUser(request):
-    return HttpResponse("User not active")
-
-
-
-class Dashboard(View):
-
-    def get(self,request):
-        return render(request,"baseDashboard.html")
-
-
 
 class Home(View):
 
@@ -119,9 +107,6 @@ class Home(View):
             return redirect("home")
     
 
-class BillDetails(DeleteView):
-    model = Challan
-    template_name = "details.html"
 
 class UpdateBill(UpdateView):
     model = Challan
@@ -133,7 +118,7 @@ class UpdateUser(View):
 
     def get(self,request,pk):
         usr = CustomUser.objects.get(id=pk)
-        return render(request,"editProfile.html",{"editUser":usr})
+        return render(request,"adminEditUser.html",{"editUser":usr})
     
     def post(self,request,pk):
         usr = CustomUser.objects.get(id=pk)
@@ -161,6 +146,8 @@ class UpdateUserPhoto(View):
         else:
             return redirect("home")
 
+
+
 class DeleteBill(DeleteView):
     model = Challan
     success_url = reverse_lazy('home')
@@ -174,7 +161,6 @@ class DeleteUser(DeleteView):
     template_name = 'delete.html'
 
     
-
 
 
 class ChangeUserStatus(View):
