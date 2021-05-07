@@ -176,6 +176,21 @@ class ChangeUserStatus(View):
             user.save()
             return JsonResponse(f"{user.first_name}, account has been activated",safe=False)
 
+def downloadBill(request,pk):
+    bill = Challan.objects.get(id=pk)
+    context={"bill":bill}
+    return render(request,'billpdf.html',context)
+
+
+
+from .utils import render_to_pdf
+
+class GeneratePdf(View):
+    def get(self, request,pk, *args, **kwargs):
+        bill = Challan.objects.get(id=pk)
+        context={"bill":bill}
+        pdf = render_to_pdf('billpdf.html', context)
+        return HttpResponse(pdf, content_type='application/pdf')
 
 
    

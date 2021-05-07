@@ -1,13 +1,14 @@
 from .import views
 from django.urls import path
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth import views as auth_views
 
 urlpatterns = [
    path("",views.welcome,name="welcome"),
 
    path("auth/login",views.Login.as_view(),name="login"),
 
-   path("user",login_required(views.Home.as_view()),name="home"),
+   path("home",login_required(views.Home.as_view()),name="home"),
 
    path("auth/signup",views.UserSignUp.as_view(),name="signup"),
 
@@ -23,5 +24,13 @@ urlpatterns = [
 
    path("delete-user/<pk>",login_required(views.DeleteUser.as_view()),name="deleteUser"),
 
-   path("change-user-status/<pk>",views.ChangeUserStatus.as_view())
+   path("change-user-status/<pk>",views.ChangeUserStatus.as_view()),
+
+   # path("print-bill/<pk>",views.GeneratePdf.as_view(),name="printBill"),
+   path("print-bill/<pk>",views.downloadBill,name="printBill"),
+
+   path('reset_password/', auth_views.PasswordResetView.as_view(),name="reset_password"),
+   path('reset_password_sent/', auth_views.PasswordResetDoneView.as_view(),name="password_reset_done"),
+   path('reset/<uidb64>/<token>/', auth_views.PasswordResetConfirmView.as_view(),name="password_reset_confirm"),
+   path('reset_password_complete/', auth_views.PasswordResetCompleteView.as_view(),name="password_reset_complete"),
 ]

@@ -27,6 +27,7 @@
 
         }
 
+
 .rootContainer{
     display: flex;
 }
@@ -519,7 +520,7 @@ align-items: center;
                              <h4>Recent Challans</h4>
                              {%for bill in bills%}
                              {% if forloop.counter < 5 %}
-                             <p class="list_bill">{{ forloop.counter }}. {{bill.name}} was fined Rs. {{bill.price}} at {{bill.place}}</p>
+                             <p class="list_bill">{{ forloop.counter }}. {{bill.name}} was fined Rs. {{bill.fine}} at {{bill.place}}</p>
                              {%endif%}
                              {%endfor%}
                             </div>
@@ -667,7 +668,7 @@ align-items: center;
                         <td style="padding-top: 15px!important;">{{bill.license_number}}</td>
                         <td style="padding-top: 15px!important;">{{bill.vechile_type}}</td>
                         <td style="padding-top: 15px!important;"><span style="font-weight: 600;">Self</span></td>
-                        <td style="padding-top: 15px!important;" class="download-pdf" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Download Pdf"><span style="font-weight: 600;">Download</span> <i style="padding-left: 10px;" class="fas fa-download"></i></td>
+                        <td style="padding-top: 15px!important;" class="download-pdf" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Download Pdf"><a href="{%url "printBill" bill.id%}" style="text-decoration: none;"><span style="font-weight: 600;">Download</span> <i style="padding-left: 10px;" class="fas fa-download"></i></a></td>
                         {%if user.is_superuser%}
                         <td>
                             <button type="button" class="btn btn-primary btn-sm"><a href="{%url "update" bill.id%}" style="color: white;text-decoration: none;">Edit</a></button>
@@ -720,7 +721,7 @@ align-items: center;
                                 <td style="padding-top: 15px!important;">{{bill.license_number}}</td>
                                 <td style="padding-top: 15px!important;">{{bill.vechile_type}}</td>
                                 <td style="padding-top: 15px!important;">{{bill.created_by}}</td>
-                                <td style="padding-top: 15px!important;" class="download-pdf" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Download Pdf"><span style="font-weight: 600;">Download</span> <i style="padding-left: 10px;" class="fas fa-download"></i></td>
+                                <td style="padding-top: 15px!important;" class="download-pdf" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Download Pdf"><a href="{%url "printBill" bill.id%}" style="text-decoration: none;"><span style="font-weight: 600;">Download</span> <i style="padding-left: 10px;" class="fas fa-download"></i></a></td>
                                 {%if user.is_superuser%}
                                 <td>
                                     <button type="button" class="btn btn-primary btn-sm"><a href="{%url "update" bill.id%}" style="color: white;text-decoration: none;">Edit</a></button>

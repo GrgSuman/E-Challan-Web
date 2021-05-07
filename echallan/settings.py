@@ -74,6 +74,13 @@ TEMPLATES = [
     },
 ]
 
+EMAIL_HOST = 'localhost'
+EMAIL_PORT = 1025
+EMAIL_HOST_USER = ''
+EMAIL_HOST_PASSWORD = ''
+EMAIL_USE_TLS = False
+DEFAULT_FROM_EMAIL = 'testing@example.com'
+
 WSGI_APPLICATION = 'echallan.wsgi.application'
 
 
@@ -128,5 +135,5 @@ MEDIA_ROOT=BASE_DIR/"media"
 MEDIA_URL="/media/"
 
 LOGIN_URL="/auth/login"
-LOGIN_REDIRECT_URL="/users/"
+LOGIN_REDIRECT_URL="/home"
 LOGOUT_REDIRECT_URL="/#"

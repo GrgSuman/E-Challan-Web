@@ -6,14 +6,102 @@
     <title>Bill PDF</title>
 
     <style>
+        *{
+            margin: 0;padding: 0;box-sizing: border-box;
+        }
         body{
-            background-color: #f9f9f9;
+            background-color: #d1bebe;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
+
+        }
+        .mainCont{
+            margin:0px 25%;
+            padding:5%;
+            background-color: white;
+        }
+
+        .top{
+       display: flex;
+       justify-content: flex-end;
+        }
+
+        .details{
+            display: flex;
+            justify-content: space-between;
+            margin: 100px 0;
+        }
+        .bill{
+            display: flex;
+            flex-direction: column;
+        }
+
+        .bill section{
+            display: flex;
+            justify-content: space-between;
+            margin: 10px 0;
         }
     </style>
 </head>
 <body>
 
+    <div class="mainCont">
+        <div class="top">
+            <h2>   Invoice#{{bill.id}}  </h2>
+        </div>
+
+       <center> <h1 style="margin: 2.5rem 0;">E-Challan Fine Invoice</h1></center>
+
+
+
+       <div class="details">
+           <section class="from">
+               <p>From :</p>
+               <h3>E-COPS</h3>
+               <h3>Email: fine@ecops.com</h3>
+           </section>
+
+
+           <section class="from">
+            <p>To :</p>
+            <h3>{{bill.name}}</h3>
+            <h3>Email: {{bill.email}}</h3>
+        </section>
+       </div>
+
+       <div class="bill">
+           <section>
+               <p>Fined at :</p>
+               <p style="font-weight: bold;">{{bill.place}}</p>
+           </section>
+
+           <section>
+            <p>Vechile Type :</p>
+            <p style="font-weight: bold;">{{bill.vechile_type}}</p>
+        </section>
+
+        <section>
+            <p>License Number :</p>
+            <p style="font-weight: bold;">{{bill.license_number}}</p>
+        </section>
+
+        <section>
+            <p>Fined by :</p>
+            <p style="font-weight: bold;">{{bill.created_by}}</p>
+        </section> 
+        <hr>
+
+        <section >
+            <p>Total Fine Charge :</p>
+            <p style="font-weight: bold;">Rs. {{bill.fine}}</p>
+        </section>
+       </div>
+       
+    </div>
+
+    
     
     
 </body>
 </html>
+
