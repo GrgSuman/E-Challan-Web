@@ -230,6 +230,12 @@ width:95vw;
     const signup = document.getElementById("signup")
     
     signup.addEventListener("submit",(e)=>{
+        var d1 = new Date()
+        var d2 = new Date(date.value)
+
+        console.log(d1.getTime()+"d1")
+        console.log(d2.getTime()+"d2")
+
     
         if(name.value==""||username.value==""||address.value==""||pass1.value==""||pass2.value==""||date.value==""){
             e.preventDefault()
@@ -254,6 +260,13 @@ width:95vw;
             setTimeout(()=>{errorMsg.innerHTML=""},6000)
             return false
         }
+        else if((d1.getTime() < d2.getTime())){
+            e.preventDefault()
+            errorMsg.innerHTML="Date cannot be in future"
+            setTimeout(()=>{errorMsg.innerHTML=""},6000)
+            return false
+        } 
+       
         else{
             return true
         }

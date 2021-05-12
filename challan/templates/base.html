@@ -75,8 +75,8 @@ nav{
         </section>
 
         <section class="login_signup">
-            <a href="" class="sign__up">Pay Challan</a>
-            <a href="" class="sign__up">News</a>
+            <a href="" class="sign__up xx">Pay Challan</a>
+            <a href="" class="sign__up xx">News</a>
             <a href="{%url "signup"%}" class="sign__up">Signup</a>
             <a  class="login__" href="{%url "login"%}">Login</a>
         </section>
@@ -87,12 +87,28 @@ nav{
 
 
     {%block js%}
+
     {%endblock js%}
 
+    {%if user.is_authenticated%}
+    <script>
+        window.location.href="/home"
+    </script>
+    {%endif%}
 <script>
     document.querySelector(".logo img").addEventListener("click",()=>{
         window.location.href="/"
     })
+
+    const btn =  document.querySelectorAll(".xx")
+    btn.forEach(x=>{
+        x.addEventListener("click",()=>{
+            alert("This feature is currently in development.")
+        })
+    })
+
+ 
+    
 </script>
 
 </body>

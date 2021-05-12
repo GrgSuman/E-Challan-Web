@@ -59,6 +59,11 @@ class UserSignUp(View):
             usr.save()
             return redirect("login")
         else:
+            usr = CustomUser.objects.all()
+            for u in usr:
+                if request.POST["username"] == u.email:
+                    messages.error(request,"User with this email already exists.")
+                    return redirect("signup")
             messages.error(request,"Fields improperly filled, please try again")
             return redirect("signup")
         

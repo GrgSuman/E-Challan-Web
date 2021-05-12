@@ -601,8 +601,10 @@ align-items: center;
 
                         <form action="" method="POST">
                             {%csrf_token%}
+
                             <label for="exampleFormControlInput1" class="form-label">Name</label>
-                            <input  type="text" name="name" required class="form-control" >
+                            <p style="color: red;font-weight: bold;font-size: 14px;margin: 10px 0;" id="er"></p>
+                            <input  type="text" id="checkName" name="name" required class="form-control" >
     
                             <label for="exampleFormControlInput2" class="form-label">Email address</label>
                             <input type="email" name="email" required class="form-control" >
@@ -614,10 +616,10 @@ align-items: center;
                             <input type="number" name="fine" required value="500" class="form-control" >
     
                             <label for="exampleFormControlInput5" class="form-label">Liscense Number</label>
-                            <input type="number" name="license_number" required class="form-control" >
+                            <input type="text" name="license_number" required class="form-control" >
     
                             <label for="exampleFormControlInput6" class="form-label">Vechile Number</label>
-                            <input type="number" name="vechile_number" required class="form-control" >
+                            <input type="text" name="vechile_number" required class="form-control" >
     
                             <label for="exampleFormControlInput1" class="form-label">Vechile Type</label>
                             <select name="vechile_type" class="form-select"  aria-label="Default select example">
@@ -766,6 +768,21 @@ align-items: center;
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
     <script>
+
+        let payee = document.querySelector("#checkName")
+        let er = document.querySelector("#er")
+
+        payee.addEventListener("keyup",(e)=>{
+            try{
+        if(parseInt(e.target.value)){
+            payee.value=""
+            er.innerHTML="Name cannot be number"
+        }else{er.innerHTML=""}
+            }
+            catch(e){ er.innerHTML=""}
+        })
+
+       
 
         var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
         var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {

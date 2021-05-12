@@ -27,8 +27,8 @@ class Challan(models.Model):
     email = models.EmailField(null=True,blank=True)
     place = models.CharField(max_length=100)
     fine = models.IntegerField(default=500)
-    license_number = models.IntegerField()
-    vechile_number = models.IntegerField()
+    license_number = models.CharField(max_length=100)
+    vechile_number = models.CharField(max_length=100)
     vechile_type = models.CharField(choices=VECHILE_CHOICES,default="BIKE",max_length=20)
     created_by = models.ForeignKey(CustomUser,on_delete=models.CASCADE,blank=True,null=True)
 
