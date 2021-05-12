@@ -3,9 +3,12 @@ from django.contrib import admin
 from django.urls import path
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import views as auth_views
+from django.conf.urls import handler404
 
-admin.site.site_header = "UMSRA Admin"
-admin.site.site_title = "UMSRA Admin Portal"
+handler404 = views.error_404
+
+admin.site.site_header = "E-Chalan"
+admin.site.site_title = "E-Chalan Admin Portal"
 
 urlpatterns = [
    path("",views.welcome,name="welcome"),

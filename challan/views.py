@@ -197,6 +197,10 @@ class GeneratePdf(View):
         pdf = render_to_pdf('billpdf.html', context)
         return HttpResponse(pdf, content_type='application/pdf')
 
+def error_404(request, exception):
+   context = {}
+   return render(request,'404.html', context)
+
 
    
 
